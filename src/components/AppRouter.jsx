@@ -1,12 +1,13 @@
 import React from "react";
-import { Route, Routes, Redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { privateRoutes, publicRoutes } from "../routes";
+import Shop from "../pages/Shop";
 
 console.log("privateRoutes", privateRoutes);
 console.log("publicRoutes", publicRoutes);
 
 const AppRouter = () => {
-  const isAuth = true;
+  const isAuth = false;
   return (
     <Routes>
       {isAuth
@@ -16,7 +17,7 @@ const AppRouter = () => {
         : publicRoutes.map(({ path, Component }) => (
             <Route exact path={path} element={<Component />} key={path} />
           ))}
-      <Route path="/" element={<div>Default Page Content</div>} />
+      <Route path="*" element={<Shop />} />
     </Routes>
   );
 };

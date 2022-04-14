@@ -1,12 +1,12 @@
 // import logo from './logo.svg';
 import React from "react";
+import { GlobalStyle } from "@styles";
 import AppRouter from "@components/AppRouter";
-// import Shop from "./pages/Shop";
 
 const App = () => {
   return (
     <div className="App">
-      {/* <header className="App-header"></header> */}
+      <GlobalStyle />
       <AppRouter />
       {/* <Shop /> */}
     </div>

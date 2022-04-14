@@ -5,8 +5,9 @@ module.exports = function override(config, env) {
   alias({
     "@components": "src/components",
     "@pages": "src/pages",
-    "@store": "src/store",
+    "@redux": "src/redux",
     "@utils": "src/utils",
+    "@styles": "src/styles",
   })(config);
   //do stuff with the webpack config...
   return config;
