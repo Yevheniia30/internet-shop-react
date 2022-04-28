@@ -13,6 +13,8 @@ import {
   ErrorText,
   FormWrapper,
 } from "@styles";
+import { Main } from "../widgets/main";
+import { Header } from "../widgets/header";
 
 const Auth = () => {
   const initialValues = {
@@ -71,84 +73,87 @@ const Auth = () => {
   };
 
   return (
-    <MainWrapper>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validate={validate}
-        // onReset={handleReset}
-        enableReinitialize
-      >
-        {({
-          values,
-          handleChange,
-          handleBlur,
-          isSubmitting,
-          errors,
-          touched,
-        }) => {
-          return (
-            <FormWrapper>
-              <Form>
-                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                <InputWrapper>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder={
-                      isLoginPage ? "Enter login or email" : "Enter email"
-                    }
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                  />
-                  {errors.email && touched.email && (
-                    <ErrorText>{errors.email}</ErrorText>
-                  )}
-                </InputWrapper>
-                <InputWrapper>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Enter password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                  />
-                  {errors.password && touched.password && (
-                    <ErrorText>{errors.password}</ErrorText>
-                  )}
-                </InputWrapper>
-                {!isLoginPage && (
+    <>
+      {/* <Header /> */}
+      <Main back="#c98787">
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validate={validate}
+          // onReset={handleReset}
+          enableReinitialize
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            isSubmitting,
+            errors,
+            touched,
+          }) => {
+            return (
+              <FormWrapper>
+                <Form>
+                  {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                  <InputWrapper>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder={
+                        isLoginPage ? "Enter login or email" : "Enter email"
+                      }
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                    />
+                    {errors.email && touched.email && (
+                      <ErrorText>{errors.email}</ErrorText>
+                    )}
+                  </InputWrapper>
                   <InputWrapper>
                     <Input
                       type="password"
-                      name="passwordConfirm"
-                      placeholder="Confirm password"
+                      name="password"
+                      placeholder="Enter password"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.passwordConfirm}
+                      value={values.password}
                     />
-                    {errors.passwordConfirm && touched.passwordConfirm && (
-                      <ErrorText>{errors.passwordConfirm}</ErrorText>
+                    {errors.password && touched.password && (
+                      <ErrorText>{errors.password}</ErrorText>
                     )}
                   </InputWrapper>
-                )}
-                <BtnWrapper>
-                  <Button
-                    disabled={isSubmitting}
-                    // align="self-end"
-                    back="#cecece"
-                  >
-                    {isLoginPage ? "Log in" : "Sign up"}
-                  </Button>
-                </BtnWrapper>
-              </Form>
-            </FormWrapper>
-          );
-        }}
-      </Formik>
-    </MainWrapper>
+                  {!isLoginPage && (
+                    <InputWrapper>
+                      <Input
+                        type="password"
+                        name="passwordConfirm"
+                        placeholder="Confirm password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.passwordConfirm}
+                      />
+                      {errors.passwordConfirm && touched.passwordConfirm && (
+                        <ErrorText>{errors.passwordConfirm}</ErrorText>
+                      )}
+                    </InputWrapper>
+                  )}
+                  <BtnWrapper>
+                    <Button
+                      disabled={isSubmitting}
+                      // align="self-end"
+                      back="#cecece"
+                    >
+                      {isLoginPage ? "Log in" : "Sign up"}
+                    </Button>
+                  </BtnWrapper>
+                </Form>
+              </FormWrapper>
+            );
+          }}
+        </Formik>
+      </Main>
+    </>
   );
 };
 
