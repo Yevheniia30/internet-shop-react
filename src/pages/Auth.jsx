@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import axios from "axios";
-import { useLocation, useParams } from "react-router-dom";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 import { Formik, Form } from "formik";
 // import styled from "styled-components";
@@ -23,17 +24,17 @@ const Auth = () => {
     passwordConfirm: "",
   };
   // const navigate = useNavigate();
-  const params = useParams();
-  const location = useLocation();
+  // const params = useParams();
+  const history = useHistory();
 
   console.log("initialValues", initialValues);
   // console.log("history", navigate);
-  console.log("params", params);
-  console.log("location", location);
+  // console.log("params", params);
+  // console.log("location", location);
 
   const isLoginPage = useMemo(() => {
-    return location.pathname === "/login";
-  }, [location]);
+    return history.location.pathname === "/login";
+  }, [history]);
 
   const handleSubmit = async (values, { resetForm }) => {
     console.log("values", values);
@@ -75,7 +76,7 @@ const Auth = () => {
   return (
     <>
       {/* <Header /> */}
-      <Main back="#c98787">
+      <Main back="#28283d">
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -94,7 +95,7 @@ const Auth = () => {
             return (
               <FormWrapper>
                 <Form>
-                  {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                  <pre>{JSON.stringify(isSubmitting, null, 2)}</pre>
                   <InputWrapper>
                     <Input
                       type="email"
@@ -138,14 +139,25 @@ const Auth = () => {
                       )}
                     </InputWrapper>
                   )}
-                  <BtnWrapper>
-                    <Button
-                      disabled={isSubmitting}
-                      // align="self-end"
-                      back="#cecece"
-                    >
-                      {isLoginPage ? "Log in" : "Sign up"}
-                    </Button>
+                  <Link
+                    to={isLoginPage ? "./register" : "./login"}
+                    style={{ color: "#cecece" }}
+                  >
+                    {isLoginPage
+                      ? "Do not an account yet? Sign up"
+                      : "Already have an account? Log in"}
+                  </Link>
+                  <BtnWrapper direction="column">
+                    <div style={{ marginBottom: "10px" }}>
+                      <Button disabled={isSubmitting} back="#cecece">
+                        {isLoginPage ? "Log in" : "Sign up"}
+                      </Button>
+                    </div>
+                    <div>
+                      <Button disabled={isSubmitting} back="#cecece">
+                        Google
+                      </Button>
+                    </div>
                   </BtnWrapper>
                 </Form>
               </FormWrapper>

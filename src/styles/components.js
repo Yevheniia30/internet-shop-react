@@ -18,6 +18,7 @@ export const FormWrapper = styled.div`
 
 export const BtnWrapper = styled.div`
   display: flex;
+  margin-top: 10px;
   flex-direction: ${(props) => props.direction || "row"};
 
   justify-content: flex-end;
@@ -40,7 +41,7 @@ export const InputWrapper = styled.div`
 export const StyledButton = styled.button`
   /* background-color: #fff; */
   background-color: ${(props) => props.back || "#fff"};
-  padding: 2px 5px;
+  padding: 4px 10px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
